@@ -225,4 +225,96 @@ And let's break down what `draw_grid` is doing:
       starting at the top of the surface `(x,0)` and going to the bottom `(x,WIDTH)`
     - It does the same for horizontal lines using `y`
 
-Run `python snake.py` in your terminal again - you should see a black screen with a 20x20 white grid.
+Run `python snake.py` in your terminal again - you should see a black screen with a white 20x20 grid.
+
+## Snakes and Cubes
+
+Next step is to add our snake. Our snake is going to be made up of cubes, so let's take a closer look at those two
+classes.
+What sorts of functions do we need them to perform?
+
+```python
+class Cube():
+    def __init__(self, start, dirx=1, diry=0, color=SNAKE_COL):
+        pass
+
+    def move(self, dirx, diry):
+        pass
+
+    def draw(self, surface, head=False):
+        pass
+
+
+class Snake():
+    def __init__(self, color, pos):
+        pass
+
+    def move(self):
+        pass
+
+    def reset(self, pos):
+        pass
+
+    def add_cube(self):
+        pass
+
+    def draw(self, surface):
+        pass
+```
+
+Our Cube class has an init method, move, and draw. The variables that are going to matter to this class are:
+
+- `pos`: a list of length 2 that holds the cube's position on our board
+- `dirx`: the x-direction the cube is headed in
+- `diry`: the y-direction the cube is headed in
+- `color`: what color the cube is (this is important for later, because snacks will also be cubes)
+
+In `__init__`, we just want to give an instance of that class all the features that are passed to it through its
+parameters:
+
+```python
+    def __init__(self, start, dirx=1, diry=0, color=SNAKE_COL):
+
+
+    self.pos = start
+self.dirx = dirx
+self.diry = diry  # "L", "R", "U", "D"
+self.color = color
+```
+
+Now is a good time to explain how our snake is going to move. `dirx` and `diry` can be one of 0, 1, or -1.
+These correspond to the directions on the board. Note that in pygame, the origin (0,0) of the board is in the top left.
+
+- right: `dirx = 1`
+- left: `dirx = -1`
+- up: `diry = -1`
+- down: `diry = 1`
+
+One of `dirx` or `diry` must be zero at all times, so that the snake can only move in those 4 directions. I.e., if one
+of them has a movement value, say `dirx = 1`, then `diry` must be `0`. The snake moves by adding the direction value to
+its current position.
+
+With this, let's code our `move` function:
+
+```python
+    def move(self, dirx, diry):
+    self.dirx = dirx
+    self.diry = diry
+    self.pos = (self.pos[0] + self.dirx, self.pos[1] + self.diry)
+```
+
+Let's also write our `draw` function. This is what's going to let pygame render instances of `Cube` on the screen.
+
+```python
+    def draw(self, surface, head=False):
+    dis = WIDTH // ROWS
+    i = self.pos[0]
+    j = self.pos[1]
+
+    pygame.draw.rect(surface, self.color, (i * dis + 1, j * dis + 1, dis - 1, dis - 2))
+```
+
+- `dis = WIDTH // ROWS` is the dimensions of our cube
+- We set `i` and `j` to the x- and y-position of the cube
+- `pygame.draw.rect` draws a rectangle on the passed in surface in its color, and the (width, height) coordinates of the
+  cube. We add and subtract some numbers to it so that we can still see the gridlines surrounding the cube.
