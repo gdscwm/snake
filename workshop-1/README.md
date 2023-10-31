@@ -1,25 +1,20 @@
 # Workshop One
 
-Welcome to DSC
-
 ## Setup
 
-We have to do a couple things before we can get into coding the game.
-
-### Virtual Environment
-
-1. Create a directory for your code by opening the command line (if you're using Mac/Linux, open Terminal, if you're on
-   Windows, use Powershell) and enter the following commands:
+Create a directory for your code by opening the command line (if you're using Mac/Linux, open Terminal, if you're on
+Windows, use Powershell) and enter the following commands:
 
 ```
 mkdir snake
 cd snake
 ```
 
-You should now be in the directory `snake`.  
-\
+You should now be in the directory `snake`.
 
-2. Now we want to create a virtual environment in the `snake` directory. Run the following command:
+### Virtual Environment
+
+1. Now we want to create a virtual environment in the `snake` directory. Run the following command:
 
 ```
 python3 -m venv [venvname]
@@ -27,9 +22,8 @@ python3 -m venv [venvname]
 
 Where you replace `[venvname]` with what you want your virtual environment to be called. _We strongly recommend calling
 it `.snake-venv`._  If `python3` doesn't work for you, try just `python`.
-\
 
-3. Activate your virtual environment with the following command:
+2. Activate your virtual environment with the following command:
 
 ```
 source [venvname]/bin/activate
@@ -46,10 +40,9 @@ If you're on a non-Linux system (eg Windows), consult this table to activate you
 
 If this command does not work for you, refer
 to [the python documentation](https://docs.python.org/3/library/venv.html#how-venvs-work) for further options, and raise
-your hand.  
-\
+your hand.
 
-4. Confirm that things are set up correctly using the following command:
+3. Confirm that things are set up correctly using the following command:
 
 ```
 pip list
@@ -77,12 +70,15 @@ their [docs](https://www.pygame.org/docs/). We'll be using these functions: `dra
 `display`, and `time`.
 ___
 
-## First steps
+## First steps: making our game board
 
 We're familiar with the classic snake game: snake that gets longer every time it eats a snack, and dies if it runs into
-itself. What functions, classes, etc would we need to implement this?
+itself. What functions, classes, etc would we need to implement this? Think about it before moving on.
+___
 
-# STOP! don't scroll yet, spoilers ahead
+# WAIT! don't scroll yet, spoilers ahead
+
+___
 
 Here's the skeleton file for our snake game.
 
@@ -97,28 +93,14 @@ class Cube():
     def __init__(self):
         pass
 
-    def move(self):
-        pass
-
-    def draw(self):
-        pass
+    # more functions here...
 
 
 class Snake():
     def __init__(self):
         pass
 
-    def move(self):
-        pass
-
-    def reset(self):
-        pass
-
-    def add_cube(self):
-        pass
-
-    def draw(self):
-        pass
+    # more functions here...
 
 
 def random_snack():
