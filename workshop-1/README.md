@@ -274,12 +274,10 @@ parameters:
 
 ```python
     def __init__(self, start, dirx=1, diry=0, color=SNAKE_COL):
-
-
     self.pos = start
-self.dirx = dirx
-self.diry = diry  # "L", "R", "U", "D"
-self.color = color
+    self.dirx = dirx
+    self.diry = diry  # "L", "R", "U", "D"
+    self.color = color
 ```
 
 Now is a good time to explain how our snake is going to move. `dirx` and `diry` can be one of 0, 1, or -1.
