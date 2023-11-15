@@ -236,7 +236,7 @@ def main():
 
         head_pos = snake.head.pos
         if head_pos[0] >= 20 or head_pos[0] < 0 or head_pos[1] >= 20 or head_pos[1] < 0:
-            print("Scpre:", len(snake.body))
+            print("Score:", len(snake.body))
             snake.reset((10, 10))
 
         redraw_surface(surface, snake)
